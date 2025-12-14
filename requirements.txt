@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pandas
+pydantic
+streamlit
+python-dotenv
+requests
+torch
+transformers
+scipy
