@@ -89,22 +89,30 @@ SmartSift addresses these issues using a tiered AI architecture that is fast, co
 ## Local Setup
 
 ### Backend (FastAPI)
-```bash
+Bash
+
 pip install -r requirements.txt
+
 uvicorn app.main:app --reload
-Backend runs on:
-http://localhost:8000
 
-Frontend (Next.js)
-bash
-Copy code
+Backend runs on: http://localhost:8000
+
+---
+
+### Frontend (Next.js)
+Bash
+
 cd frontend
-npm install
-npm run dev
-Frontend runs on:
-http://localhost:3000
 
-Future Roadmap
+npm install 
+
+npm run dev
+
+Frontend runs on: http://localhost:3000
+
+---
+
+## Future Roadmap
 PostgreSQL + Vector DB integration
 
 CRM connectors (Zendesk, Salesforce)
@@ -113,6 +121,8 @@ Voice complaint analysis using speech-to-text models
 
 Continuous retraining pipelines
 
-Contact
-Nakibul Islam
+---
+
+## Contact
+Nakibul Islam 
 Email: nakibul.sci@gmail.com
