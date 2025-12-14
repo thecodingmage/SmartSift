@@ -1,85 +1,135 @@
-# SmartSift: Anti-Fragile Automated Complaint Summarization
+SmartSift
 
-**An End-to-End MLOps Pipeline for Cost-Efficient, Reliable Customer Insights.**
+Intelligent Complaint Triage System
+Digithon 2025 Submission | IIT Guwahati
 
-> Built for the Digithon 2025 Finals.
+SmartSift is a high-performance, hybrid AI system designed to transform how customer support teams handle large volumes of product complaints. By combining a low-latency CPU-based router with a high-intelligence GPU-based analyst, SmartSift automates complaint triage, reduces operational costs, and converts raw feedback into actionable engineering insights.
 
-## Overview
-SmartSift is an intelligent complaint management system designed to solve the "Manual Bottleneck" in customer support. Unlike traditional sentiment models that fail on sarcasm or waste expensive GPU compute on simple queries, SmartSift uses a **Tiered "Anti-Fragile" Architecture**.
+Project Overview
 
-It intelligently routes traffic between lightweight CPU models and heavy GPU LLMs, ensuring **90% cost reduction** while maintaining **100% reliability** via a Human-in-the-Loop (HITL) safety valve.
+Modern customer support systems suffer from three core problems:
 
-## Key Features
-* **Semantic Smart Router (Tier 1):** Uses Vector Embeddings (`sentence-transformers`) to instantly route simple queries (e.g., "Reset password") to the CPU, bypassing expensive GPUs.
-* **The Safety Valve:** A dedicated "Sarcasm Guard" detects ambiguous or sarcastic feedback (e.g., "Great job breaking the app") and routes it to a human expert instead of hallucinating a response.
-* **Tier 1b Data Engine (GPU):** Complex technical complaints are sent to **Llama 3.3 (via Groq)** for detailed Aspect-Based Sentiment Analysis (ABSA).
-* **Human-in-the-Loop (HITL) Workspace:** An integrated annotator dashboard to review flagged data, correct labels, and trigger retraining loops (simulated Jenkins pipeline).
-* **Executive Strategy Agent:** Generates CEO-level strategic reports and action plans from aggregated defect data using Generative AI.
+Volume Overload: Thousands of tickets ranging from trivial admin queries to critical hardware failures.
 
-## Architecture
-**Ingestion** -> **Vector Router (CPU)** -> **Llama 3.3 (GPU)** -> **Strategic Report**
+High Latency: Manual triage delays responses and frustrates users.
 
-*(Ambiguous data -> Review Queue -> Human Fix -> Retraining)*
+Lost Intelligence: Recurring product issues remain hidden in unstructured text.
 
-## Tech Stack
-* **Backend:** FastAPI, Pydantic (Data Contracts)
-* **Frontend:** Streamlit (Interactive Dashboard)
-* **AI Models:**
-    * **Routing:** `all-MiniLM-L6-v2` (Sentence Transformers) + RoBERTa
-    * **Analysis & Reasoning:** Llama 3.3-70b (via Groq API)
-* **MLOps:** Human Review Queue & Simulated Continuous Learning Pipeline
+SmartSift addresses these issues using a tiered AI architecture that is fast, cost-efficient, and reliable by design.
 
-## Installation
+System Architecture
+Tiered Intelligence Pipeline (The 85/15 Rule)
 
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/thecodingmage/SmartSift-Automated-Complaint-Summarization.git](https://github.com/thecodingmage/SmartSift-Automated-Complaint-Summarization.git)
-    cd SmartSift-Automated-Complaint-Summarization
-    ```
+Tier 1: CPU Router (Local, Low Cost)
 
-2.  **Install Dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
+Model: Sentence Transformers (MiniLM family)
 
-3.  **Set up Environment Variables:**
-    Create a `.env` file in the root directory and add your Groq API key:
-    ```env
-    GROQ_API_KEY="your_groq_api_key_here"
-    ```
+Function: Instantly classifies incoming complaints using semantic similarity and keyword reasoning.
 
-## Usage
+Outcome: Automatically resolves the majority of routine issues (billing, login, shipping) within milliseconds.
 
-## Usage
+Tier 2: GPU Analyst (Cloud, High Intelligence)
 
-**1. Start the Backend Server:**
-```bash
+Model: Llama 3 (via Groq API)
+
+Function: Activated only for complex, technical, or negative complaints.
+
+Outcome: Performs deep aspect-based sentiment analysis, identifies affected devices, root causes, and severity.
+
+Human-in-the-Loop (HITL)
+
+Ambiguous or high-risk complaints are routed to an annotator workspace.
+
+Human-validated labels are stored as a Golden Set, enabling continuous improvement and drift mitigation.
+
+Key Features
+User Dashboard
+
+Real-time testing of individual complaints.
+
+Transparent routing decisions (CPU vs GPU).
+
+Clear visualization of sentiment, aspect, and system action.
+
+Batch Processing Engine
+
+Upload CSV datasets to simulate enterprise workloads.
+
+Processes mixed complaint types at scale.
+
+Displays efficiency metrics, auto-resolution rate, and actionable tags.
+
+Annotator Workspace
+
+Dedicated interface for reviewing AI-flagged complaints (sarcasm, mixed sentiment).
+
+Human corrections are persisted for future retraining.
+
+Ensures robustness and prevents silent model failure.
+
+Strategic Insights
+
+Aggregates historical complaint data into executive-level insights.
+
+Risk Radar highlights emerging technical failure clusters.
+
+Generates a recommended action plan for engineering and support leadership.
+
+Tech Stack
+Component	Technology	Purpose
+Frontend	Next.js (React)	High-performance UI
+Styling	Tailwind CSS	Modern dark-mode design
+Animation	Framer Motion	Smooth transitions and visualizations
+Backend	FastAPI (Python)	Async, high-speed APIs
+AI (Local)	Sentence Transformers	Zero-latency routing
+AI (Cloud)	Llama 3 (Groq API)	Deep complaint analysis
+Data Layer	CSV / Pandas	Lightweight MVP persistence
+Screenshots
+
+![User Dashboard](frontend\public\docs\screenshots\Screenshot (1847).png)
+![Batch Processing](frontend\public\docs\screenshots\Screenshot (1848).png)
+![Annotator Workspace](frontend\public\docs\screenshots\Screenshot (1849).png)
+![Strategic Insights](frontend\public\docs\screenshots\Screenshot (1850).png)
+
+Local Setup
+Backend (FastAPI)
+pip install -r requirements.txt
 uvicorn app.main:app --reload
-2. Start the Frontend Dashboard: Open a new terminal and run:
 
-Bash
 
-streamlit run app/frontend.py
-3. Demo Guide (Try these inputs):
+Backend runs on:
+http://localhost:8000
 
-Simple Route (Cost-Efficient): "How do I reset my password?"
+Frontend (Next.js)
+cd frontend
+npm install
+npm run dev
 
-Result: Auto-resolved by CPU.
 
-Complex Route (Deep Analysis): "The battery drains in 1 hour and the screen gets hot."
+Frontend runs on:
+http://localhost:3000
 
-Result: Sent to GPU for Aspect Extraction.
+Important Notes
 
-Safety Valve (Anti-Fragile): "Great update, thanks for breaking my login."
+API keys must never be hard-coded. Use environment variables and keep .env files out of version control.
 
-Result: Flagged for Human Review (HITL).
+Generated files such as history_log.csv and human_review_queue.csv are runtime artifacts.
 
-Future Scope
-Integration with Jira/Zendesk for automatic ticket creation.
+demo_dataset.csv is intentionally included for testing and demonstration.
 
-Real-time voice-to-text complaint logging.
+Future Work
 
-Full deployment of the Jenkins pipeline for automated model fine-tuning on the "Golden Set."
-**1. Start the Backend Server:**
-```bash
-uvicorn app.main:app --reload
+Replace CSV persistence with PostgreSQL and vector databases.
+
+CRM integrations (Zendesk, Salesforce).
+
+Audio complaint analysis via speech-to-text.
+
+Automated retraining pipelines and CI/CD integration.
+
+Contact
+
+For questions, feedback, or collaboration:
+
+Nakibul Islam
+Email: nakibul.sci@gmail.com
