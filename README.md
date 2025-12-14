@@ -5,6 +5,10 @@ Digithon 2025 Submission | IIT Guwahati
 
 SmartSift is a high-performance, hybrid AI system designed to transform how customer support teams handle large volumes of product complaints. By combining a low-latency CPU-based router with a high-intelligence GPU-based analyst, SmartSift automates complaint triage, reduces operational costs, and converts raw feedback into actionable engineering insights.
 
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ---
 
 ## Problem Overview
